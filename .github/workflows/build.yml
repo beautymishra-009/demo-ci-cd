@@ -22,13 +22,14 @@ jobs:
     - name: Deploy to CloudHub
       run: |
         mvn deploy -DskipMunitTests -DmuleDeploy \
-	-Dmule.artifact=poc \
-	-Danypoint.username="${{vars.ANYPOINTUSERNAME}}"
-	-Danypoint.password="${{vars.ANYPOINTPASSWORD}}"
-	-Dsecure_key="${{vars.MULE_KEY}}"
-	-Denvironment="${{vars.MULE_ENV}}"
-	-DtargetName="${{vars.MULE_TARGET}}"
-	-settings .maven/settings.xml
+     	 -Dmule.artifact=poc \
+     	 -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" \
+     	 -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" \
+      	 -Dsecure_key="${{ vars.MULE_KEY }}" \
+      	 -Denvironment="${{ vars.MULE_ENV }}" \
+         -DtargetName="${{ vars.MULE_TARGET }}" \
+     	 --settings .maven/settings.xml
+
 	
 	
 
