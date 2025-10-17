@@ -13,22 +13,16 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v4
       with:
-        distribution: "zulu"
-        java-version: '17'
+        distribution: "temurin"
+        java-version: '21'
 
     - name: Deploy to Exchange
-      run: mvn deploy --settings .maven/settings.xml -DskipMunitTests
+      run: mvn deploy -s settings.xml
 
-    - name: Deploy to Sandbox
+    - name: Deploy to CloudHub
       run: |
-        mvn deploy -DskipMunitTests -DmuleDeploy \
-         -Dmule.artifact=poc \
-     	 -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" \
-     	 -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" \
-      	 -Dsecure_key="${{ vars.MULE_KEY }}" \
-      	 -Denvironment="${{ vars.MULE_ENV }}" \
-         -DtargetName="${{ vars.MULE_TARGET }}" \
-     	 --settings .maven/settings.xml
+        mvn deploy -DmuleDeploy  -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" \
+      -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -DtargetName="${{vars.MULE_TARGET}}" --settings .maven/settings.xml
 
     
 
