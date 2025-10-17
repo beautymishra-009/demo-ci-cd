@@ -83,7 +83,7 @@
 			<layout>default</layout>
 		</repository>
 		 <repository>
-        <id>Repository</id>
+        <id>Exchange2</id>
         <name>Exchange2 Repository</name>
         <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/c36e24ce-e7d4-471f-bff4-7d84258e205e/maven</url>
         <layout>default</layout>
