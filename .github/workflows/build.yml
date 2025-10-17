@@ -25,8 +25,8 @@ jobs:
       - name: Deploy to CloudHub
         run: |
           mvn deploy -DmuleDeploy ^
-            -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" ^
-            -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" ^
-            -Denvironment="${{ vars.MULE_ENV }}" ^
-            -Dsecure_key="${{ secrets.MULE_KEY }}" ^
+            -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" \
+            -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" \
+            -Denvironment="${{ vars.MULE_ENV }}" \
+            -Dsecure_key="${{ secrets.MULE_KEY }}" \
             -Dtarget="${{ vars.MULE_TARGET }}" --settings .maven/settings.xml
