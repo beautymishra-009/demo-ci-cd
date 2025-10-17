@@ -19,10 +19,10 @@ jobs:
     - name: Deploy to Exchange
       run: mvn deploy --settings .maven/settings.xml -DskipMunitTests
 
-    - name: Deploy to CloudHub
+    - name: Deploy to Sandbox
       run: |
         mvn deploy -DskipMunitTests -DmuleDeploy \
-     	 -Dmule.artifact=poc \
+         -Dmule.artifact=poc \
      	 -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" \
      	 -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" \
       	 -Dsecure_key="${{ vars.MULE_KEY }}" \
@@ -30,7 +30,7 @@ jobs:
          -DtargetName="${{ vars.MULE_TARGET }}" \
      	 --settings .maven/settings.xml
 
-	
-	
+    
 
+	
  
