@@ -21,6 +21,6 @@ jobs:
 
     - name: Deploy to CloudHub
       run: |
-        mvn deploy -DmuleDeploy -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -Dtarget="${{vars.MULE_TARGET}}" --settings settings.xml
+        mvn deploy -DmuleDeploy -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -Dtarget="${{vars.MULE_TARGET}}" -s .maven/settings.xml
 
  
