@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -16,21 +16,18 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'  # Change to '11' if your Mule runtime doesn't support 17
+          distribution: "temurin"
+          java-version: '17'
 
-      - name: Set up Maven settings
-        run: |
-          mkdir -p .maven
-          echo "${{ secrets.MAVEN_SETTINGS }}" > .maven/settings.xml
+      - name: Deploy to Exchange
+        run: mvn deploy --settings .maven/settings.xml
 
-      - name: Build and Deploy to CloudHub
+      - name: Deploy to CloudHub
         run: |
-          mvn deploy -DskipMunitTests -DmuleDeploy \
-            -Dmule.artifact=poc \
-            -Danypoint.username="${{ secrets.ANYPOINT_USERNAME }}" \
-            -Danypoint.password="${{ secrets.ANYPOINT_PASSWORD }}" \
-            -Dsecure_key="${{ secrets.MULE_KEY }}" \
-            -Denvironment="${{ vars.MULE_ENV }}" \
-            -DtargetName="${{ vars.MULE_TARGET }}" \
+          mvn deploy -DmuleDeploy ^
+            -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" ^
+            -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" ^
+            -Denvironment="${{ vars.MULE_ENV }}" ^
+            -Dsecure_key="${{ secrets.MULE_KEY }}" ^
+            -DtargetName="${{ vars.MULE_TARGET }}" ^
             --settings .maven/settings.xml
