@@ -24,7 +24,7 @@ jobs:
 
       - name: Deploy to CloudHub
         run: |
-          mvn deploy -DmuleDeploy ^
+          mvn deploy -DmuleDeploy \
             -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}" \
             -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" \
             -Denvironment="${{ vars.MULE_ENV }}" \
