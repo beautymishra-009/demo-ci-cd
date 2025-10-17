@@ -13,14 +13,14 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v4
       with:
-        distribution: "temurin"
-        java-version: '21'
+        distribution: "zulu"
+        java-version: '17'
 
     - name: Deploy to Exchange
       run: mvn deploy --settings .maven/settings.xml -DskipMunitTests
 
     - name: Deploy to CloudHub
       run: |
-        mvn deploy -DmuleDeploy -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -Dtarget="${{vars.MULE_TARGET}}" -settings .maven/settings.xml -DskipMunitTests -DmuleDeploy
+        mvn deploy -DmuleDeploy -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -settings .maven/settings.xml -DskipMunitTests
 
  
