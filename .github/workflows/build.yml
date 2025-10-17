@@ -29,5 +29,4 @@ jobs:
             -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" ^
             -Denvironment="${{ vars.MULE_ENV }}" ^
             -Dsecure_key="${{ secrets.MULE_KEY }}" ^
-            -DtargetName="${{ vars.MULE_TARGET }}" ^
-            --settings .maven/settings.xml
+            -DtargetName="${{ vars.MULE_TARGET }}" --settings .maven/settings.xml
