@@ -1,0 +1,26 @@
+name: Build and Deploy to CloudHub 2.0
+on:
+  push:
+    branches: dev
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: "temurin"
+        java-version: '21'
+
+    - name: Deploy to Exchange
+      run: mvn deploy -s settings.xml
+
+    - name: Deploy to CloudHub
+      run: |
+        mvn deploy -DmuleDeploy -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -Dtarget="${{vars.MULE_TARGET}}" --settings settings.xml
+
+ 
