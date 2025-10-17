@@ -1,30 +1,36 @@
 name: Build and Deploy to CloudHub 2.0
+
 on:
   push:
-    branches: dev
+    branches:
+      - dev
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: "temurin"
-        java-version: '21'
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'  # Change to '11' if your Mule runtime doesn't support 17
 
-    - name: Deploy to Exchange
-      run: mvn deploy -s settings.xml
+      - name: Set up Maven settings
+        run: |
+          mkdir -p .maven
+          echo "${{ secrets.MAVEN_SETTINGS }}" > .maven/settings.xml
 
-    - name: Deploy to CloudHub
-      run: |
-        mvn deploy -DmuleDeploy  -Danypoint.username="${{ vars.ANYPOINTUSERNAME }}"
-      -Danypoint.password="${{ vars.ANYPOINTPASSWORD }}" -Denvironment="${{vars.MULE_ENV}}" -Dsecure_key="${{secrets.MULE_KEY}}" -DtargetName="${{vars.MULE_TARGET}}" --settings .maven/settings.xml
-
-    
-
-	
- 
+      - name: Build and Deploy to CloudHub
+        run: |
+          mvn deploy -DskipMunitTests -DmuleDeploy \
+            -Dmule.artifact=poc \
+            -Danypoint.username="${{ secrets.ANYPOINT_USERNAME }}" \
+            -Danypoint.password="${{ secrets.ANYPOINT_PASSWORD }}" \
+            -Dsecure_key="${{ secrets.MULE_KEY }}" \
+            -Denvironment="${{ vars.MULE_ENV }}" \
+            -DtargetName="${{ vars.MULE_TARGET }}" \
+            --settings .maven/settings.xml
