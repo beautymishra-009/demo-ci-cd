@@ -33,7 +33,7 @@
         <cloudhub2Deployment>
             <uri>https://anypoint.mulesoft.com</uri>
             <provider>MC</provider>
-            <environment>Sandbox</environment>
+            <environment>DEV</environment>
             <target>Cloudhub-US-East-2</target>
             <server>Exchange2</server>
             <applicationName>${project.artifactId}</applicationName>
