@@ -38,6 +38,7 @@
             <server>Exchange2</server>
             <applicationName>${project.artifactId}</applicationName>
             <releaseChannel>NONE</releaseChannel>
+<muleVersion>4.7.0</muleVersion>
             <replicas>1</replicas>
             <vCores>0.1</vCores>
             <deploymentSettings>
