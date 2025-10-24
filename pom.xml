@@ -35,7 +35,7 @@
             <environment>TEST</environment>
             <target>Cloudhub-US-East-2</target>
             <server>Exchange2</server>
-            <applicationName>poc</applicationName>
+            <applicationName>poc-test</applicationName>
             <replicas>1</replicas>
             <vCores>0.1</vCores>
             <deploymentSettings>
