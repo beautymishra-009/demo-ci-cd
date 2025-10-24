@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>c36e24ce-e7d4-471f-bff4-7d84258e205e</groupId>
 	<artifactId>poc</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<packaging>mule-application</packaging>
 	<name>poc</name>
 
@@ -32,7 +32,7 @@
         <cloudhub2Deployment>
             <uri>https://anypoint.mulesoft.com</uri>
             <provider>MC</provider>
-            <environment>${env}</environment>
+            <environment>DEV</environment>
             <target>Cloudhub-US-East-2</target>
             <server>Exchange2</server>
             <applicationName>poc-${env}</applicationName>
