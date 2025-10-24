@@ -1,0 +1,38 @@
+name: Deploy to CloudHub 2.0 (Test)
+
+on:
+  push:
+    branches: [ test ]   # Trigger this workflow when pushing to 'test' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: 17
+
+      - name: Build Mule Application
+        run: |
+          mvn clean package --settings .maven/settings.xml -DskipMunitTests
+
+      - name: Deploy to CloudHub 2.0 (Test Environment)
+        run: |
+          mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+            -Denvironment=test \
+            -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
+            -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}" \
+            -Danypoint.env="test"
