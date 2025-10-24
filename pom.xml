@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>c36e24ce-e7d4-471f-bff4-7d84258e205e</groupId>
 	<artifactId>poc</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>mule-application</packaging>
 	<name>poc</name>
 
