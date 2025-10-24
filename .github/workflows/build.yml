@@ -39,5 +39,6 @@ jobs:
           mvn deploy --settings .maven/settings.xml \
             -DskipMunitTests -DmuleDeploy \
             -Denv=${{ env.ENVIRONMENT }} \
+            -Dreplicas="${{ vars.MULE_REPLICAS }} \
             -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
             -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
