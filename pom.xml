@@ -32,7 +32,7 @@
         <cloudhub2Deployment>
             <uri>https://anypoint.mulesoft.com</uri>
             <provider>MC</provider>
-            <environment>DEV</environment>
+            <environment>TEST</environment>
             <target>Cloudhub-US-East-2</target>
             <server>Exchange2</server>
             <applicationName>poc</applicationName>
