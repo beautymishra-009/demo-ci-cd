@@ -35,7 +35,7 @@
             <environment>DEV</environment>
             <target>Cloudhub-US-East-2</target>
             <server>Exchange2</server>
-            <applicationName>poc</applicationName>
+            <applicationName>poc-${env}</applicationName>
             <replicas>1</replicas>
             <vCores>0.1</vCores>
             <deploymentSettings>

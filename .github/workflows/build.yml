@@ -7,6 +7,10 @@ on:
 jobs:         
   build:
     runs-on: ubuntu-latest
+
+    env:
+      ENVIRONMENT: dev 
+
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
@@ -27,10 +31,12 @@ jobs:
       - name: Publish to Exchange
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests \
+	  -Denv=${{ env.ENVIRONMENT }}
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
       - name: Deploy to CloudHub 2.0
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+	  -Denv=${{ env.ENVIRONMENT }}
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}" 
