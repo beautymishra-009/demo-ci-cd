@@ -33,6 +33,10 @@ jobs:
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
             -Denv=test \
+            -Ddecryption.key="${{ secrets.DECRYPTION_KEY }}" \
+            -Dmule.env="${{ secrets.MULE_ENV }}" \
+            -Dplatform.client_id="${{ secrets.CLIENT_ID }}" \
+            -Dplatform.client_secret="${{ secrets.CLINET_SECRET }}"
             -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
             -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}" \
             -Danypoint.env="test"

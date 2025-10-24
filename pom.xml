@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>c36e24ce-e7d4-471f-bff4-7d84258e205e</groupId>
 	<artifactId>poc</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.6</version>
 	<packaging>mule-application</packaging>
 	<name>poc</name>
 
@@ -38,6 +38,12 @@
             <applicationName>poc-test</applicationName>
             <replicas>1</replicas>
             <vCores>0.1</vCores>
+            <properties>
+	    <secure.key>${decryption.key}</secure.key>
+             <mule.env>${mule.env}</mule.env>
+		<anypoint.platform.client_id>${platform.client_id}</anypoint.platform.client_id>
+	       <anypoint.platform.client_secret>${platform.client_secret}</anypoint.platform.client_secret>
+	    </properties>
             <deploymentSettings>
                 <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
             </deploymentSettings>
